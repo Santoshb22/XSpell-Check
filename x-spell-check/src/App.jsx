@@ -2,16 +2,22 @@ import { useState } from "react"
 
 const App = () => {
   const customDictionary = {
+
     teh: "the",
+  
     wrok: "work",
+  
     fot: "for",
-    exampl: "example",
-  }
+  
+    exampl: "example"
+  
+  };
+  
 
   const [inputText, setInputText] = useState("");
   const [suggestedText, setSuggestedText] = useState("");
 
-  const handleInputChange = (e) => {
+ const handleInputChange = (e) => {
     const text = e.target.value;
     setInputText(text);
 
@@ -19,12 +25,17 @@ const App = () => {
     const correctedWords = words.map((word) => {
       const correctedWord = customDictionary[word.toLowerCase()];
       return correctedWord || word;
-    })
+    });
 
-    const firstCorrection = correctedWords.find((word, index) => word !== words[index])
+    const correctedText = correctedWords.join(" ");
 
+    const firstCorrection = correctedWords.find(
+      (word, index) => word !== words[index]
+    );
     setSuggestedText(firstCorrection || "");
-  }
+  };
+
+  
 
   return (
      <div>
